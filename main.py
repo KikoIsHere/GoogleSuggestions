@@ -82,7 +82,7 @@ def get_amount_of_searches(dictionary):
                 amount = re.findall("\d+" , amount)
                 amount = ' '.join([str(elem) for elem in amount])
                 dictionary.setdefault('results',[]).append(amount)
-        return None
+        return
 
 
 def insert_into_db(dictionary, keyword):
