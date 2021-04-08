@@ -97,6 +97,7 @@ def insert_into_db(dictionary, keyword):
             mycursor.execute(sql, val)
             mydb.commit()
         print(mycursor.rowcount, "record inserted.")
+        return
 
 
 if __name__ == "__main__":
