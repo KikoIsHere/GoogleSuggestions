@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title of your page here</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    </head>
+    <body>
+        <table id="table">
+            <tr>
+                <th>Suggestions</th>
+                <th>Results</th>
+            </tr>
+            {% for item in data %}
+            <tr>
+                <td>{{item[1]}}</td>
+                <td>{{item[2]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <form action="/" method="post">
+            <input class="text" type="text" name="keyword" placeholder="Type keyword">
+            <input class="submit" type="submit" value="submit">
+            <p>It will generate a new table if the keyword doesn't exist in the database</p>
+        </form>
+    </body>
+</html>

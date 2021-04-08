@@ -12,23 +12,22 @@ import mysql.connector
 
 CHROME_PATH = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
 chrome_options = Options()
+chrome_options.headless = True
 chrome_options.add_argument('window-size=800x600')
 chrome_options.add_argument('no-proxy-server')
 chrome_options.add_argument("proxy-server='direct://'")
 chrome_options.add_argument("proxy-bypass-list=*")
 chrome_options.binary_location = CHROME_PATH
-driver = webdriver.Chrome(executable_path='Chrome/chromedriver', options=chrome_options)
+driver = webdriver.Chrome(executable_path='Chrome/chromedriver', options=chrome_options)  
 
 
-def main():
-    keywords = [item for item in input("Enter the Keywords: ").split()]
-    for keyword in keywords:
-        dictionary = {}
-        go_to_google()
-        slow_type(keyword)
-        get_suggestions(dictionary)
-        get_amount_of_searches(dictionary)
-        insert_into_db(dictionary, keyword)
+def main(keyword):
+    dictionary = {}
+    go_to_google()
+    slow_type(keyword)
+    get_suggestions(dictionary)
+    get_amount_of_searches(dictionary)
+    insert_into_db(dictionary, keyword)
     driver.quit
 
 
@@ -97,8 +96,5 @@ def insert_into_db(dictionary, keyword):
             mycursor.execute(sql, val)
             mydb.commit()
         print(mycursor.rowcount, "record inserted.")
-        return
+        return 
 
-
-if __name__ == "__main__":
-    main()

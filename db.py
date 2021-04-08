@@ -1,4 +1,5 @@
 import mysql.connector
+from mysql.connector import errorcode
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -7,6 +8,10 @@ mydb = mysql.connector.connect(
   database = "google_searches"
 )
 
-mycursor = mydb.cursor()
+# mycursor = mydb.cursor()
+# mycursor.execute("SELECT * FROM give")
+
+# for x in mycursor:
+#   print(x)
 
 #mycursor.execute("CREATE DATABASE google_searches")

@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title of your page here</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    </head>
+    <body>
+        <form action="/" method="post">
+            <input class="text" type="text" name="keyword" placeholder="Type keyword">
+            <input class="submit" type="submit" value="submit">
+            <p>It will generate a new table if the keyword doesn't exist in the database</p>
+        </form>
+    </body>
+</html>
