@@ -86,13 +86,15 @@ def get_amount_of_searches(dictionary):
 
 def insert_into_db(dictionary, keyword):
     mycursor = mydb.cursor()
-    mycursor.execute("CREATE TABLE IF NOT EXISTS "+ keyword +"(id INT AUTO_INCREMENT PRIMARY KEY, suggestion VARCHAR(255), results CHAR(34))")
+    mycursor.execute("CREATE TABLE IF NOT EXISTS storage (id INT AUTO_INCREMENT PRIMARY KEY, suggestion VARCHAR(255), results VARCHAR(255), parent VARCHAR(255))")
     for lst in dictionary.values():
         for x in range(len(lst)):
             suggestion = [item for item in dictionary['suggestion']]
             result = [item for item in dictionary['results']]
-            sql = "INSERT INTO "+ keyword +" (suggestion, results) VALUES (%s, %s)"
-            val = (suggestion[x], (result[x]))
+            sql = ("INSERT INTO storage "
+               "(suggestion, results, parent) "
+               "VALUES (%s, %s, %s)")
+            val = (suggestion[x], result[x], keyword)
             mycursor.execute(sql, val)
             mydb.commit()
         print(mycursor.rowcount, "record inserted.")

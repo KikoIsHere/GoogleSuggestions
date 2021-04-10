@@ -3,12 +3,23 @@
         <meta charset="UTF-8">
         <title>Title of your page here</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="icon" href="data:,">
     </head>
     <body>
-        <form action="/" method="post">
-            <input class="text" type="text" name="keyword" placeholder="Type keyword">
-            <input class="submit" type="submit" value="find">
-            <p>It will generate a new table if the keyword doesn't exist in the database</p>
-        </form>
+        <div id="loading"></div>
+        <div id="content">
+            <form action="/" method="post">
+                <input class="text" type="text" name="keyword" placeholder="Type keyword">
+                <input class="submit" type="submit" value="find" onclick="loading();">
+                <p>It will generate a new table if the keyword doesn't exist in the database</p>
+            </form>
+        </div>
+        <script type="text/javascript">// <![CDATA[
+            function loading(){
+                $("#loading").show();
+                $("#content").hide();       
+            }
+// ]]>  </script>
     </body>
 </html>
